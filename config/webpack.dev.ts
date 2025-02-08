@@ -3,13 +3,13 @@ import { Configuration } from 'webpack';
 import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import { merge } from 'webpack-merge';
 
-import common from './webpack.common';
+import config from '../webpack.config';
 
 interface DevConfig extends Configuration {
   devServer: DevServerConfiguration;
 }
 
-const config: DevConfig = {
+const devConfig: DevConfig = {
   mode: 'development',
   devtool: 'eval-source-map',
   devServer: {
@@ -20,4 +20,4 @@ const config: DevConfig = {
   plugins: [new ReactRefreshWebpackPlugin()],
 };
 
-export default merge<Configuration>(common(true), config);
+export default merge<Configuration>(config(true), devConfig);

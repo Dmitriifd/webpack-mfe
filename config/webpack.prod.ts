@@ -1,10 +1,11 @@
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
+import { Configuration } from 'webpack';
 import { merge } from 'webpack-merge';
 
-import common from './webpack.common';
+import config from '../webpack.config';
 
-export default merge(common(false), {
+const prodConfig: Configuration = {
   mode: 'production',
   devtool: 'source-map',
   optimization: {
@@ -14,4 +15,6 @@ export default merge(common(false), {
       chunks: 'all',
     },
   },
-});
+};
+
+export default merge<Configuration>(config(false), prodConfig);

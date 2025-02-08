@@ -1,13 +1,19 @@
+import React from 'react';
+
+import styles from './Button.module.scss';
+
 type ButtonProps = {
   onClick?: () => void;
   children: React.ReactNode;
   disabled?: boolean;
 };
 
-export const Button = ({ onClick, children, disabled = false }: ButtonProps) => {
+const Button = ({ onClick, children, disabled = false }: ButtonProps) => {
   return (
-    <button onClick={onClick} disabled={disabled} type="button">
+    <button onClick={onClick} disabled={disabled} type="button" className={styles.button}>
       {children}
     </button>
   );
 };
+
+export default Button;

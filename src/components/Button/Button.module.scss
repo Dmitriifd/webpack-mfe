@@ -9,11 +9,13 @@
   &:hover {
     background-color: #0056b3;
   }
-}
-.primary {
-  color: white;
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
 }
 
 .test {
-  background: blue;
+  color: red;
 }
