@@ -39,12 +39,7 @@ module.exports = (isDevelopment) => ({
       {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
-          },
-        },
+        use: 'babel-loader',
       },
       {
         test: /\.module\.s?(css|scss)$/,
@@ -71,10 +66,9 @@ module.exports = (isDevelopment) => ({
             loader: '@svgr/webpack',
             options: {
               typescript: true,
-              exportType: 'named',
+              exportType: 'default',
             },
           },
-          'file-loader',
         ],
       },
     ],
