@@ -1,10 +1,20 @@
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Dotenv = require('dotenv-webpack');
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import path from 'path';
+import { Configuration } from 'webpack';
 
-const getStyleLoaders = (cssOptions, isDevelopment) => {
+interface CSSOptions {
+  importLoaders?: number;
+  modules?:
+    | boolean
+    | {
+        localIdentName: string;
+      };
+}
+
+const getStyleLoaders = (cssOptions: CSSOptions, isDevelopment: boolean) => {
   const loaders = [
     isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
     {
@@ -24,7 +34,7 @@ const getStyleLoaders = (cssOptions, isDevelopment) => {
   return loaders;
 };
 
-module.exports = (isDevelopment) => ({
+const config = (isDevelopment: boolean): Configuration => ({
   entry: './src/index.tsx',
   output: {
     filename: '[name].[contenthash].js',
@@ -33,6 +43,12 @@ module.exports = (isDevelopment) => ({
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+    },
   },
   module: {
     rules: [
@@ -89,3 +105,5 @@ module.exports = (isDevelopment) => ({
     new Dotenv(),
   ],
 });
+
+export default config;

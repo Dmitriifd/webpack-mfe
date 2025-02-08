@@ -1,8 +1,11 @@
-const { ModuleFederationPlugin } = require('webpack').container;
-const common = require('./webpack.common');
-const { merge } = require('webpack-merge');
+import { Configuration, container } from 'webpack';
+import { merge } from 'webpack-merge';
 
-module.exports = merge(common, {
+import common from './webpack.common';
+
+const { ModuleFederationPlugin } = container;
+
+export default merge<Configuration>(common(false), {
   plugins: [
     new ModuleFederationPlugin({
       name: 'app',
@@ -19,4 +22,4 @@ module.exports = merge(common, {
       },
     }),
   ],
-});
+} as Configuration);
