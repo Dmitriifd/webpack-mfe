@@ -8,8 +8,8 @@
     "build": "webpack --config webpack.prod.js",
     "start": "npm run dev",
     "test": "jest",
-    "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings=0",
+    "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
     "format": "prettier --write src",
     "prepare": "husky install"
   },
@@ -58,6 +58,7 @@
     "dotenv-webpack": "^8.1.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^10.0.1",
+    "eslint-import-resolver-typescript": "^3.7.0",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
