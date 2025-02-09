@@ -16,4 +16,4 @@ const Button = ({ onClick, children, disabled = false }: ButtonProps) => {
   );
 };
 
-export default Button;
+export { Button };
